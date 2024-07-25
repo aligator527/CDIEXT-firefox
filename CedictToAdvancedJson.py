@@ -1,5 +1,6 @@
 import json
 import re
+import math
 
 def addToneMarks(pinyin):
     tone_marks = {
@@ -64,7 +65,7 @@ def parse_dictionary(dictionary_path):
     parsed = [parse_line(line) for line in content]
     return parsed
 
-def to_json(parsed, output_path):
+def to_json(parsed, output_base_path, chunks=10):
     data = [{
         'traditional': traditional,
         'simplified': simplified,
@@ -72,10 +73,14 @@ def to_json(parsed, output_path):
         'meanings': meanings,
     } for traditional, simplified, reading, meanings in parsed]
 
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=None) #Change indent to 4, if you want to read results. Change to 0 to minimize
+    chunk_size = math.ceil(len(data) / chunks)
+    for i in range(chunks):
+        chunk_data = data[i * chunk_size:(i + 1) * chunk_size]
+        chunk_output_path = f"{output_base_path}_{i + 1}.json"
+        with open(chunk_output_path, 'w', encoding='utf-8') as f:
+            json.dump(chunk_data, f, ensure_ascii=False, indent=None) #Change indent to 4, if you want to read results. Change to 0 to minimize
 
 dictionary_path = 'cedict_ts.u8'  # Update with your path to CC-CEDICT
-output_path = 'cedict_advanced.json'  # Update with your desired output path
+output_path = 'cedict'  # Update with your desired output path
 parsed = parse_dictionary(dictionary_path)
 to_json(parsed, output_path)

@@ -45,15 +45,42 @@ script.onload = () => {
       }
 
       // Load dictionary from a JSON file and build an index
+      function toggleSearchState() {
+        isSearchingEnabled = !isSearchingEnabled;
+        const newIcon = isSearchingEnabled
+          ? "assets/img/icon.png"
+          : "assets/img/icon_disabled.png";
+        browser.browserAction.setIcon({ path: newIcon });
+        browser.browserAction.setBadgeText({ text: isSearchingEnabled ? "" : "OFF" });
+        notifyAllTabs();
+      }
+
+      // Load dictionary from multiple JSON files and build an index
       function loadDictionary() {
-        fetch(browser.runtime.getURL("data/cedict_advanced.json"))
-          .then((response) => response.json())
-          .then((data) => {
-            dictionary.data = data;
-            dictionary.index = buildIndex(data);
+        const files = [
+          "data/cedict_1.json",
+          "data/cedict_2.json",
+          "data/cedict_3.json",
+          "data/cedict_4.json",
+          "data/cedict_5.json",
+          "data/cedict_6.json",
+          "data/cedict_7.json",
+          "data/cedict_8.json",
+          "data/cedict_9.json",
+          "data/cedict_10.json"
+        ];
+
+        const fetchPromises = files.map(file =>
+          fetch(browser.runtime.getURL(file)).then(response => response.json())
+        );
+
+        Promise.all(fetchPromises)
+          .then(results => {
+            results.forEach(data => dictionary.data.push(...data));
+            dictionary.index = buildIndex(dictionary.data);
             console.log("Dictionary and index loaded!");
           })
-          .catch((error) => {
+          .catch(error => {
             console.error("Failed to load the dictionary:", error);
           });
       }
