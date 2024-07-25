@@ -77,7 +77,19 @@ So, basically, there are:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Build
 
+First of all, download the Cedict file from https://www.mdbg.net/chinese/dictionary?page=cc-cedict (look for `cedict_1_0_ts_utf-8_mdbg.zip`).
+
+Put `cedict_ts.u8` to the folder with `CedictToAdvancedJson.py` and run the code:
+
+  python CedictToAdvancedJson.py
+
+Then you get files `cedict_1.json`, `cedict_2.json`, ..., `cedict_10.json`. 
+
+Put them inside `data` folder.
+
+Then run `about:debugging` in Firefox, add extension by uploading `manifest.json` file 
 
 <!-- ROADMAP -->
 ## Roadmap
