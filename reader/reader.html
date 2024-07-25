@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text Grabber</title>
+<style>
+body {
+    background-color: #111;
+    color: #E0E0E0;
+    font-family: Verdana, Arial, IPAGothic, Noto Sans CJK JP Regular, TakaoGothic, Meiryo, sans-serif;
+    font-size: 1.4em;
+    word-break: break-word;
+}
+html {
+    overflow-y: scroll;
+}
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+button {
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(244,241,238,1) 72%, rgba(219,211,197,1) 100%);
+    border: none;
+    border-radius: 5px;
+    outline: 1px solid rgba(0, 0, 0, 0.5);
+    -moz-outline-radius: 5px;
+    cursor: pointer;
+    font-size: 65%;
+    font-weight: 600;
+    height: 2em;
+    transition: all .05s ease-in-out;
+}
+#button_pause:hover {
+    opacity: 1.0;
+}
+#button_delete:hover {
+    opacity: 1.0;
+}
+#button_pause {
+    opacity: 0.35;
+    position: fixed;
+    right: 5px;
+    height: 2em;
+}
+#button_delete {
+    opacity: 0.35;
+    position: fixed;
+    right: 5px;
+    height: 2em;
+}
+</style>
+<style id="new_style">
+body > p:nth-of-type(1) {
+    color: #CCCCCC;
+}
+#button_delete {
+    bottom: 5px;
+}
+#button_pause {
+    bottom: calc(10px + 2em);
+}
+</style>
+<script src="reader.js" charset="UTF-8"></script>
+<script src="content.js" charset="UTF-8"></script>
+</head>
+
+<body lang="ch">
+<p>Strings grabbed: <span id="linecount">0</span></p>
+<p><i>This page grabs from the clipboard automatically if it contains Chinese text. If this page is not opened, CDIEXT will never access the clipboard.</i></p>
+<p><i>Use the context menu (right click the page) to toggle CDIEXT.</i></p>
+<div style="position:absolute;visibility:hidden"><textarea id="cdiext-paste-target"></textarea></div>
+<button id="button_pause">Pause</button>
+<button id="button_delete">Delete Newest</button>
+</body>
+</html>
