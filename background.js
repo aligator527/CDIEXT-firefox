@@ -44,17 +44,6 @@ script.onload = () => {
         notifyAllTabs();
       }
 
-      // Load dictionary from a JSON file and build an index
-      function toggleSearchState() {
-        isSearchingEnabled = !isSearchingEnabled;
-        const newIcon = isSearchingEnabled
-          ? "assets/img/icon.png"
-          : "assets/img/icon_disabled.png";
-        browser.browserAction.setIcon({ path: newIcon });
-        browser.browserAction.setBadgeText({ text: isSearchingEnabled ? "" : "OFF" });
-        notifyAllTabs();
-      }
-
       // Load dictionary from multiple JSON files and build an index
       function loadDictionary() {
         const files = [
