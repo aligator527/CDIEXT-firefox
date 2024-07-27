@@ -94,7 +94,7 @@ Then run `about:debugging` in Firefox, add extension by uploading `manifest.json
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add options for styles of pop-up dictionary
+- [X] Add options for styles of pop-up dictionary
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
