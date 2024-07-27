@@ -74,6 +74,7 @@ So, basically, there are:
 
 ![Game Screen Shot][game-screenshot]
 ![WikiPedia Screen Shot][wikipedia-screenshot]
+![Youtube Screen Shot][youtube-screenshot]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -83,7 +84,7 @@ First of all, download the Cedict file from https://www.mdbg.net/chinese/diction
 
 Put `cedict_ts.u8` to the folder with `CedictToAdvancedJson.py` and run the code:
 
-  python CedictToAdvancedJson.py
+    python CedictToAdvancedJson.py
 
 Then you get files `cedict_1.json`, `cedict_2.json`, ..., `cedict_10.json`. 
 
@@ -95,6 +96,11 @@ Then run `about:debugging` in Firefox, add extension by uploading `manifest.json
 ## Roadmap
 
 - [X] Add options for styles of pop-up dictionary
+- [ ] Add options for styles of reader
+- [ ] Add sticky mode
+  - [ ] Add hotkey for sticky mode
+- [ ] Add function of playing audio
+- [ ] Add function of adding word to Anki
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
@@ -193,3 +199,4 @@ Thank you for N1, Nazeka-sama.
 [linkedin-url]: https://linkedin.com/in/aligator527
 [game-screenshot]: readme_assets/game.png
 [wikipedia-screenshot]: readme_assets/wikipedia.png
+[youtube-screenshot]: readme_assets/youtube.png
