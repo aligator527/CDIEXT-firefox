@@ -28,6 +28,13 @@
             "font-size: 12px;",
             "font-family: Arial",
             "color: #000000;"
+        ],
+        popupStyles: [
+            "background-color: #ffffff;",
+            "font-weight: 400;",
+            "font-size: 12px;",
+            "font-family: Arial",
+            "color: #000000;"
         ]
     };
 

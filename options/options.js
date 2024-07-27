@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
       "Arial", "Arial Black", "Comic Sans MS", "Courier New", "Georgia", "Impact", 
       "Lucida Console", "Lucida Sans Unicode", "Palatino Linotype", "Tahoma", 
       "Times New Roman", "Trebuchet MS", "Verdana", "Courier", "Helvetica", "Times", 
-      "Monaco", "Consolas"
+      "Monaco", "Consolas", "SimSun", "NSimSun", "FangSong",
+      "KaiTi", "MingLiU_HKSCS-ExtB", "MingLiU-ExtB",
+      "PMingLiU-ExtB", "Microsoft YaHei", "SimHei"
     ];
 
     function detectFontAvailability() {
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       input = document.createElement('input');
                       input.type = 'number';
                       input.value = styleValue.replace('px', '');
-                    } else if (styleName === "color") {
+                    } else if (styleName === "color" || styleName === "background-color") {
                       input = document.createElement('input');
                       input.type = 'color';
                       input.value = styleValue;
@@ -107,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 createStyleInputs('simplifiedChineseStyles-group', window.config.simplifiedChineseStyles);
                 createStyleInputs('traditionalChineseStyles-group', window.config.traditionalChineseStyles);
                 createStyleInputs('definitionStyles-group', window.config.definitionStyles);
+                createStyleInputs('popupStyles-group', window.config.popupStyles);
           
                 document.getElementById('options-form').addEventListener('submit', (event) => {
                   event.preventDefault();
@@ -124,7 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     readingWithTonesStyles: getStyleValues('readingWithTonesStyles-group'),
                     simplifiedChineseStyles: getStyleValues('simplifiedChineseStyles-group'),
                     traditionalChineseStyles: getStyleValues('traditionalChineseStyles-group'),
-                    definitionStyles: getStyleValues('definitionStyles-group')
+                    definitionStyles: getStyleValues('definitionStyles-group'),
+                    popupStyles: getStyleValues('popupStyles-group')
                   };
 
                   console.log(newSettings);
