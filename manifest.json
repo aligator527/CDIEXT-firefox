@@ -5,7 +5,7 @@
   "description": "A pop-up dictionary extension for Chinese with Reader Function",
   "browser_specific_settings": {
     "gecko": {
-      "id": "cdiext@aligator527",
+      "id": "{07c8ffb5-ed81-463d-8771-031c90a1ad17}",
       "strict_min_version": "115.0",
       "data_collection_permissions": {
         "required": ["none"]
