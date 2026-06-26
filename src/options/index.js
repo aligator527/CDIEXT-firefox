@@ -63,7 +63,7 @@ function detectFontAvailability() {
   return availableFonts;
 }
 
-function createStyleInput(styleName, styleValue, fontOptionsHtml) {
+function createStyleInput(styleName, styleValue, fonts) {
   let input;
 
   if (styleName === "font-weight") {
@@ -85,7 +85,12 @@ function createStyleInput(styleName, styleValue, fontOptionsHtml) {
     input.value = styleValue;
   } else if (styleName === "font-family") {
     input = document.createElement("select");
-    input.innerHTML = fontOptionsHtml;
+    for (const font of fonts) {
+      const option = document.createElement("option");
+      option.value = font;
+      option.textContent = font;
+      input.appendChild(option);
+    }
     input.value = styleValue;
   } else {
     input = document.createElement("input");
@@ -97,7 +102,7 @@ function createStyleInput(styleName, styleValue, fontOptionsHtml) {
   return input;
 }
 
-function createStyleInputs(groupId, stylesArray, fontOptionsHtml) {
+function createStyleInputs(groupId, stylesArray, fonts) {
   const groupDiv = document.getElementById(groupId);
   stylesArray.forEach((style) => {
     const styleName = style.split(":")[0].trim();
@@ -106,7 +111,7 @@ function createStyleInputs(groupId, stylesArray, fontOptionsHtml) {
     const label = document.createElement("label");
     label.textContent = `${styleName}:`;
 
-    const input = createStyleInput(styleName, styleValue, fontOptionsHtml);
+    const input = createStyleInput(styleName, styleValue, fonts);
     groupDiv.appendChild(label);
     groupDiv.appendChild(input);
   });
@@ -123,12 +128,9 @@ function getStyleValues(groupId) {
 document.addEventListener("DOMContentLoaded", async () => {
   const config = await loadSettings();
   const availableFonts = detectFontAvailability();
-  const fontOptionsHtml = availableFonts
-    .map((font) => `<option value="${font}">${font}</option>`)
-    .join("");
 
   for (const group of STYLE_GROUPS) {
-    createStyleInputs(`${group}-group`, config[group], fontOptionsHtml);
+    createStyleInputs(`${group}-group`, config[group], availableFonts);
   }
 
   const stickyCheckbox = document.getElementById("sticky-mode");
