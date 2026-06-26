@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CDIEXT — Chinese Pop-up Dictionary &amp; Reader</title>
+    <link rel="icon" href="../assets/img/icon.png" />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body class="bg-slate-950 text-slate-200 antialiased selection:bg-violet-500/40">
+    <!-- Nav -->
+    <header
+      class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur supports-[backdrop-filter]:bg-slate-950/60"
+    >
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        <a href="#top" class="flex items-center gap-2 font-semibold tracking-tight">
+          <img src="../assets/img/icon.png" alt="CDIEXT" class="h-7 w-7 rounded" />
+          <span>CDIEXT</span>
+        </a>
+        <div class="hidden items-center gap-6 text-sm text-slate-400 md:flex">
+          <a href="#features" class="transition hover:text-white">Features</a>
+          <a href="#guide" class="transition hover:text-white">Guide</a>
+          <a href="#hotkeys" class="transition hover:text-white">Hotkeys</a>
+          <a href="#anki" class="transition hover:text-white">Anki</a>
+          <a href="#faq" class="transition hover:text-white">FAQ</a>
+          <a href="#changelog" class="transition hover:text-white">Changelog</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="open-options"
+            class="rounded-lg border border-white/10 px-3 py-1.5 text-sm font-medium text-slate-200 transition hover:border-white/30 hover:bg-white/5"
+          >
+            Options
+          </button>
+          <a
+            href="https://github.com/aligator527/CDIEXT-firefox"
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-lg bg-violet-600 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-violet-500"
+            >GitHub</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="relative overflow-hidden">
+        <div
+          class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(139,92,246,0.25),transparent)]"
+        ></div>
+        <div class="mx-auto max-w-6xl px-6 py-20 text-center sm:py-28">
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            Version <span id="version">1.2</span> · Firefox · Manifest V3
+          </span>
+          <h1
+            class="mx-auto mt-6 max-w-3xl bg-gradient-to-b from-white to-slate-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-6xl"
+          >
+            Read Chinese anywhere, instantly.
+          </h1>
+          <p class="mx-auto mt-5 max-w-2xl text-lg text-slate-400">
+            A pop-up dictionary for Chinese that works on web pages, input fields, and a dedicated
+            reader window for visual novels. Hover to translate, hear pronunciation, and export to
+            Anki — all offline.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <button
+              id="open-reader"
+              class="rounded-xl bg-violet-600 px-5 py-3 font-semibold text-white shadow-lg shadow-violet-600/30 transition hover:bg-violet-500"
+            >
+              Open Reader
+            </button>
+            <a
+              href="#guide"
+              class="rounded-xl border border-white/10 px-5 py-3 font-semibold text-slate-200 transition hover:border-white/30 hover:bg-white/5"
+              >How it works</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="mx-auto max-w-6xl px-6 py-16">
+        <h2 class="text-center text-3xl font-bold tracking-tight text-white">
+          Everything you need
+        </h2>
+        <p class="mx-auto mt-3 max-w-2xl text-center text-slate-400">
+          Built for learners who read native content — novels, websites, subtitles, and games.
+        </p>
+        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            class="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10"
+          >
+            <h3 class="text-lg font-semibold text-white">Hover pop-up dictionary</h3>
+            <p class="mt-2 text-sm text-slate-400">
+              Point at any Chinese word on a page and see pinyin (with tone marks) and definitions
+              from CC-CEDICT.
+            </p>
+          </div>
+          <div
+            class="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10"
+          >
+            <h3 class="text-lg font-semibold text-white">Reader for visual novels</h3>
+            <p class="mt-2 text-sm text-slate-400">
+              A separate window that captures Chinese text copied to your clipboard (e.g. via
+              Textractor) and lets you look it up line by line.
+            </p>
+          </div>
+          <div
+            class="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10"
+          >
+            <h3 class="text-lg font-semibold text-white">Works in input fields</h3>
+            <p class="mt-2 text-sm text-slate-400">
+              Unlike most extensions, CDIEXT also translates text inside
+              <code class="rounded bg-black/40 px-1">&lt;input&gt;</code> and
+              <code class="rounded bg-black/40 px-1">&lt;textarea&gt;</code> elements.
+            </p>
+          </div>
+          <div
+            class="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10"
+          >
+            <h3 class="text-lg font-semibold text-white">Audio pronunciation</h3>
+            <p class="mt-2 text-sm text-slate-400">
+              Hear any word read aloud with your browser's built-in Chinese text-to-speech voice.
+            </p>
+          </div>
+          <div
+            class="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10"
+          >
+            <h3 class="text-lg font-semibold text-white">One-click Anki export</h3>
+            <p class="mt-2 text-sm text-slate-400">
+              Send words straight to Anki via AnkiConnect with a configurable deck, note type, and
+              field mapping.
+            </p>
+          </div>
+          <div
+            class="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10"
+          >
+            <h3 class="text-lg font-semibold text-white">Yours to customize</h3>
+            <p class="mt-2 text-sm text-slate-400">
+              Tune fonts, colors, and sizes for the pop-up and reader. Pin the pop-up with sticky
+              mode. Everything stays on your device.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guide -->
+      <section id="guide" class="border-y border-white/10 bg-white/[0.02]">
+        <div class="mx-auto max-w-6xl px-6 py-16">
+          <h2 class="text-center text-3xl font-bold tracking-tight text-white">How to use</h2>
+          <div class="mt-12 grid gap-8 md:grid-cols-3">
+            <div>
+              <div
+                class="flex h-9 w-9 items-center justify-center rounded-full bg-violet-600 font-bold text-white"
+              >
+                1
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-white">On web pages</h3>
+              <p class="mt-2 text-sm text-slate-400">
+                Move your cursor over Chinese text. A pop-up appears with the reading and meaning.
+                Click the toolbar icon to toggle look-ups on or off.
+              </p>
+            </div>
+            <div>
+              <div
+                class="flex h-9 w-9 items-center justify-center rounded-full bg-violet-600 font-bold text-white"
+              >
+                2
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-white">In the reader</h3>
+              <p class="mt-2 text-sm text-slate-400">
+                Open the reader window. Copy Chinese text (manually or with Textractor) and it is
+                grabbed automatically. Hover a line to translate it.
+              </p>
+            </div>
+            <div>
+              <div
+                class="flex h-9 w-9 items-center justify-center rounded-full bg-violet-600 font-bold text-white"
+              >
+                3
+              </div>
+              <h3 class="mt-4 text-lg font-semibold text-white">Listen &amp; save</h3>
+              <p class="mt-2 text-sm text-slate-400">
+                While the pop-up is open, press the audio hotkey to hear the word, or the Anki
+                hotkey to add it to your deck — no need to chase the pop-up with your mouse.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hotkeys -->
+      <section id="hotkeys" class="mx-auto max-w-4xl px-6 py-16">
+        <h2 class="text-center text-3xl font-bold tracking-tight text-white">Keyboard shortcuts</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-center text-slate-400">
+          Because the pop-up follows your cursor, the audio and Anki actions also have hotkeys that
+          act on the top entry. Hints are shown right inside the pop-up.
+        </p>
+        <div class="mt-10 overflow-hidden rounded-2xl border border-white/10">
+          <table class="w-full text-left text-sm">
+            <tbody class="divide-y divide-white/10">
+              <tr class="bg-white/[0.02]">
+                <td class="px-5 py-4 font-medium text-white">Play audio</td>
+                <td class="px-5 py-4 text-right">
+                  <kbd class="rounded bg-black/50 px-2 py-1 font-mono text-violet-300">A</kbd>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-5 py-4 font-medium text-white">Add top entry to Anki</td>
+                <td class="px-5 py-4 text-right">
+                  <kbd class="rounded bg-black/50 px-2 py-1 font-mono text-violet-300">D</kbd>
+                </td>
+              </tr>
+              <tr class="bg-white/[0.02]">
+                <td class="px-5 py-4 font-medium text-white">Close / dismiss pop-up</td>
+                <td class="px-5 py-4 text-right">
+                  <kbd class="rounded bg-black/50 px-2 py-1 font-mono text-violet-300">Esc</kbd>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-5 py-4 font-medium text-white">Toggle sticky mode</td>
+                <td class="px-5 py-4 text-right">
+                  <kbd class="rounded bg-black/50 px-2 py-1 font-mono text-violet-300"
+                    >Alt + Shift + S</kbd
+                  >
+                </td>
+              </tr>
+              <tr class="bg-white/[0.02]">
+                <td class="px-5 py-4 font-medium text-white">Enable / disable look-ups</td>
+                <td class="px-5 py-4 text-right text-slate-400">Click the toolbar icon</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 text-center text-sm text-slate-500">
+          The audio and Anki keys can be changed in
+          <button id="open-options-2" class="text-violet-400 underline-offset-2 hover:underline">
+            Options</button
+          >.
+        </p>
+      </section>
+
+      <!-- Anki -->
+      <section id="anki" class="border-y border-white/10 bg-white/[0.02]">
+        <div class="mx-auto max-w-4xl px-6 py-16">
+          <h2 class="text-center text-3xl font-bold tracking-tight text-white">Anki setup</h2>
+          <ol class="mt-10 space-y-4 text-slate-300">
+            <li class="rounded-xl border border-white/10 bg-white/5 p-5">
+              <span class="font-semibold text-white">1.</span> Install the
+              <a
+                href="https://ankiweb.net/shared/info/2055492159"
+                target="_blank"
+                rel="noreferrer"
+                class="text-violet-400 hover:underline"
+                >AnkiConnect</a
+              >
+              add-on in Anki and keep Anki running.
+            </li>
+            <li class="rounded-xl border border-white/10 bg-white/5 p-5">
+              <span class="font-semibold text-white">2.</span> Allow this extension in AnkiConnect:
+              open
+              <span class="font-mono">Tools &rarr; Add-ons &rarr; AnkiConnect &rarr; Config</span>
+              and add the extension to <span class="font-mono">webCorsOriginList</span> (the simplest
+              option is <span class="font-mono">["*"]</span>), then restart Anki. Without this,
+              AnkiConnect silently blocks the request.
+            </li>
+            <li class="rounded-xl border border-white/10 bg-white/5 p-5">
+              <span class="font-semibold text-white">3.</span> In CDIEXT Options, set your deck
+              name, note type, and the front/back field names (they must match your Anki setup
+              exactly).
+            </li>
+            <li class="rounded-xl border border-white/10 bg-white/5 p-5">
+              <span class="font-semibold text-white">4.</span> Hover a word and press the Anki
+              hotkey (or click <span class="font-mono">+ Anki</span>). The card is created
+              instantly.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="mx-auto max-w-4xl px-6 py-16">
+        <h2 class="text-center text-3xl font-bold tracking-tight text-white">FAQ</h2>
+        <div class="mt-10 space-y-3">
+          <details class="group rounded-xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none font-medium text-white">
+              Does CDIEXT send my data anywhere?
+            </summary>
+            <p class="mt-3 text-sm text-slate-400">
+              No. The dictionary is bundled with the extension and look-ups happen locally. Audio
+              uses your browser's offline voices, and Anki export talks only to Anki on your own
+              machine.
+            </p>
+          </details>
+          <details class="group rounded-xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none font-medium text-white">
+              Why doesn't the pop-up appear?
+            </summary>
+            <p class="mt-3 text-sm text-slate-400">
+              Make sure look-ups are enabled (the toolbar icon shouldn't show "OFF"), and that you
+              are hovering over actual Chinese characters.
+            </p>
+          </details>
+          <details class="group rounded-xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none font-medium text-white">
+              The reader isn't grabbing text.
+            </summary>
+            <p class="mt-3 text-sm text-slate-400">
+              The reader only reads the clipboard while its window is open, and only when the copied
+              text contains Chinese. Use the Pause button to stop grabbing temporarily.
+            </p>
+          </details>
+          <details class="group rounded-xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none font-medium text-white">
+              Can I change the colors and fonts?
+            </summary>
+            <p class="mt-3 text-sm text-slate-400">
+              Yes — open Options to customize the pop-up and reader styles, sticky mode, and
+              hotkeys.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Changelog -->
+      <section id="changelog" class="border-t border-white/10 bg-white/[0.02]">
+        <div class="mx-auto max-w-4xl px-6 py-16">
+          <h2 class="text-center text-3xl font-bold tracking-tight text-white">Changelog</h2>
+          <div class="mt-10 space-y-8 border-l border-white/10 pl-6">
+            <div class="relative">
+              <span class="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-violet-500"></span>
+              <div class="flex items-center gap-3">
+                <h3 class="text-lg font-semibold text-white">v1.2</h3>
+                <span class="rounded-full bg-violet-500/20 px-2 py-0.5 text-xs text-violet-300"
+                  >Current</span
+                >
+              </div>
+              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-400">
+                <li>Rebuilt on Manifest V3 with a modern bundler and shared modules.</li>
+                <li>Update of CEDICT dictionary to latest version: 2026-06-26 05:32:48 GMT</li>
+                <li>Audio pronunciation and one-click Anki export.</li>
+                <li>Audio / Anki hotkeys plus on-pop-up hints.</li>
+                <li>Sticky mode with a toggle hotkey.</li>
+                <li>Customizable reader styles.</li>
+                <li>Pop-up isolated in a shadow root so page styles can't override it.</li>
+                <li>This welcome page.</li>
+              </ul>
+            </div>
+            <div class="relative">
+              <span class="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-slate-600"></span>
+              <h3 class="text-lg font-semibold text-white">v1.1</h3>
+              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-400">
+                <li>Options page for customizing pop-up styles.</li>
+              </ul>
+            </div>
+            <div class="relative">
+              <span class="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-slate-600"></span>
+              <h3 class="text-lg font-semibold text-white">v1.0</h3>
+              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-400">
+                <li>Initial release: hover pop-up dictionary and clipboard reader.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10">
+      <div
+        class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 text-sm text-slate-500 sm:flex-row"
+      >
+        <div class="flex items-center gap-2">
+          <img src="../assets/img/icon.png" alt="" class="h-5 w-5 rounded" />
+          <span>CDIEXT · MIT License · Dictionary data from CC-CEDICT</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a
+            href="https://github.com/aligator527/CDIEXT-firefox/issues/new?labels=bug"
+            target="_blank"
+            rel="noreferrer"
+            class="hover:text-white"
+            >Report a bug</a
+          >
+          <a
+            href="https://github.com/aligator527/CDIEXT-firefox/issues/new?labels=enhancement"
+            target="_blank"
+            rel="noreferrer"
+            class="hover:text-white"
+            >Request a feature</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="home.js"></script>
+  </body>
+</html>

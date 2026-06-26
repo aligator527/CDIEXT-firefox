@@ -1,0 +1,30 @@
+{
+  "name": "cdiext",
+  "version": "1.2.0",
+  "description": "A pop-up dictionary extension for Chinese with a reader function",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "author": "Ivan Dolgov <aligator527official@gmail.com>",
+  "homepage": "https://github.com/aligator527/CDIEXT-firefox",
+  "scripts": {
+    "build": "node build.mjs && npm run build:css",
+    "build:css": "tailwindcss -i src/home/home.css -o dist/home/home.css --minify",
+    "watch": "node build.mjs --watch",
+    "dev": "web-ext run --source-dir dist",
+    "lint": "eslint . && npm run build && web-ext lint --source-dir dist",
+    "lint:js": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "package": "npm run build && web-ext build --source-dir dist --overwrite-dest"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/cli": "^4.3.1",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "prettier": "^3.8.5",
+    "web-ext": "^10.4.0"
+  }
+}
