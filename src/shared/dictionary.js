@@ -41,32 +41,12 @@ export async function loadDictionary() {
 
 /**
  * @typedef {object} DefinitionEntry
- * @property {string} html        Pre-rendered definition markup (word + reading + meanings).
  * @property {string} headword    The matched lookup string.
  * @property {string} simplified
  * @property {string} traditional
  * @property {string} readingWithTones
  * @property {string[]} meanings
  */
-
-function buildDefinitionHtml(entry, word, config, readingWithTones) {
-  const wordDisplay =
-    entry.traditional !== entry.simplified
-      ? `<span style="${config.simplifiedChineseStyles.join(" ")}">${entry.simplified}</span> / <span style="${config.traditionalChineseStyles.join(" ")}">${entry.traditional}</span>`
-      : `<span style="${config.simplifiedChineseStyles.join(" ")}">${word}</span>`;
-
-  const reading = `<span style="${config.readingWithTonesStyles.join(" ")}">${readingWithTones}</span>`;
-
-  return `
-    <span style="${config.wordDisplayStyles.join(" ")}">
-      ${wordDisplay}
-    </span>
-    <span style="${config.definitionStyles.join(" ")}">
-      ${reading}</span><br/>
-    <span style="${config.definitionStyles.join(" ")}">
-      ${entry.meanings.map((m) => m.meaning).join(", ")}
-    </span>`;
-}
 
 const MAX_SEGMENT_LENGTH = 16;
 const MAX_RESULTS = 24;
@@ -103,10 +83,9 @@ function segmentAroundCursor(dictionary, text, cursor) {
  * @param {{ data: Array<object>, index: Record<string, number[]>, maxWordLength: number }} dictionary
  * @param {string} text A contiguous run of Chinese characters around the cursor.
  * @param {number} cursor Index of the hovered character within `text`.
- * @param {typeof import("./config.js").defaultConfig} config
  * @returns {DefinitionEntry[]}
  */
-export function findDefinitions(dictionary, text, cursor, config) {
+export function findDefinitions(dictionary, text, cursor) {
   if (!text) return [];
 
   const safeCursor = Number.isInteger(cursor) ? Math.max(0, Math.min(cursor, text.length - 1)) : 0;
@@ -117,19 +96,15 @@ export function findDefinitions(dictionary, text, cursor, config) {
 
   for (const { word } of candidates) {
     for (const i of dictionary.index[word]) {
+      if (seen.has(i)) continue;
+      seen.add(i);
+
       const entry = dictionary.data[i];
-      const readingWithTones = addToneMarks(entry.reading);
-      const html = buildDefinitionHtml(entry, word, config, readingWithTones);
-
-      if (seen.has(html)) continue;
-      seen.add(html);
-
       results.push({
-        html,
         headword: word,
         simplified: entry.simplified,
         traditional: entry.traditional,
-        readingWithTones,
+        readingWithTones: addToneMarks(entry.reading),
         meanings: entry.meanings.map((m) => m.meaning),
       });
     }

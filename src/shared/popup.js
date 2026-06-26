@@ -104,13 +104,43 @@ export function createPopupController(config) {
     return popup;
   }
 
+  function styledSpan(declarations, text) {
+    const span = document.createElement("span");
+    applyDeclarations(span, declarations);
+    if (text != null) span.textContent = text;
+    return span;
+  }
+
+  function buildDefinitionNode(entry) {
+    const content = document.createElement("div");
+
+    const wordDisplay = styledSpan(config.wordDisplayStyles);
+    if (entry.traditional && entry.simplified && entry.traditional !== entry.simplified) {
+      wordDisplay.appendChild(styledSpan(config.simplifiedChineseStyles, entry.simplified));
+      wordDisplay.appendChild(document.createTextNode(" / "));
+      wordDisplay.appendChild(styledSpan(config.traditionalChineseStyles, entry.traditional));
+    } else {
+      wordDisplay.appendChild(
+        styledSpan(config.simplifiedChineseStyles, entry.simplified || entry.headword),
+      );
+    }
+    content.appendChild(wordDisplay);
+
+    const readingWrap = styledSpan(config.definitionStyles);
+    readingWrap.appendChild(styledSpan(config.readingWithTonesStyles, entry.readingWithTones));
+    content.appendChild(readingWrap);
+
+    content.appendChild(document.createElement("br"));
+    content.appendChild(styledSpan(config.definitionStyles, entry.meanings.join(", ")));
+
+    return content;
+  }
+
   function buildEntryNode(entry) {
     const item = document.createElement("div");
     item.style.marginBottom = "6px";
 
-    const content = document.createElement("div");
-    content.innerHTML = entry.html;
-    item.appendChild(content);
+    item.appendChild(buildDefinitionNode(entry));
 
     const toolbar = document.createElement("div");
     toolbar.style.marginTop = "4px";

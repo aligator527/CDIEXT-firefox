@@ -113,8 +113,8 @@ async function handleMessage(message) {
   }
 
   if (message.action === Messages.LOOKUP_WORDS) {
-    const [config, dictionary] = await Promise.all([configPromise, ensureDictionary()]);
-    return { definitions: findDefinitions(dictionary, message.text, message.cursor, config) };
+    const dictionary = await ensureDictionary();
+    return { definitions: findDefinitions(dictionary, message.text, message.cursor) };
   }
 
   if (message.action === Messages.ADD_TO_ANKI) {
