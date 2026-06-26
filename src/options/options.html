@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CDIEXT Options</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 640px;
+        margin: 24px auto;
+        padding: 0 16px;
+      }
+      .style-group {
+        margin-bottom: 20px;
+      }
+      .style-group label {
+        display: block;
+        margin-top: 10px;
+      }
+      .style-group input {
+        width: 10%;
+        min-width: 80px;
+      }
+      .style-group input[type="text"] {
+        width: 240px;
+      }
+      .style-group input[type="checkbox"] {
+        width: auto;
+        min-width: 0;
+      }
+      button[type="submit"] {
+        margin-top: 12px;
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Extension Options</h1>
+    <form id="options-form">
+      <div class="style-group" id="wordDisplayStyles-group">
+        <h2>Word Display Styles</h2>
+      </div>
+      <div class="style-group" id="readingWithTonesStyles-group">
+        <h2>Reading With Tones Styles</h2>
+      </div>
+      <div class="style-group" id="simplifiedChineseStyles-group">
+        <h2>Simplified Chinese Styles</h2>
+      </div>
+      <div class="style-group" id="traditionalChineseStyles-group">
+        <h2>Traditional Chinese Styles</h2>
+      </div>
+      <div class="style-group" id="definitionStyles-group">
+        <h2>Definition Styles</h2>
+      </div>
+      <div class="style-group" id="popupStyles-group">
+        <h2>Popup Styles</h2>
+      </div>
+      <div class="style-group" id="readerStyles-group">
+        <h2>Reader Styles</h2>
+      </div>
+      <div class="style-group">
+        <h2>Behavior</h2>
+        <label
+          ><input type="checkbox" id="sticky-mode" /> Sticky popup by default (toggle hotkey:
+          Alt+Shift+S)</label
+        >
+        <label>Play audio hotkey: <input type="text" id="hotkey-audio" maxlength="1" /></label>
+        <label>Add to Anki hotkey: <input type="text" id="hotkey-anki" maxlength="1" /></label>
+      </div>
+      <div class="style-group">
+        <h2>Anki (AnkiConnect)</h2>
+        <label>Deck name: <input type="text" id="anki-deck" /></label>
+        <label>Note type: <input type="text" id="anki-model" /></label>
+        <label>Front field: <input type="text" id="anki-front" /></label>
+        <label>Back field: <input type="text" id="anki-back" /></label>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+
+    <script src="options.js"></script>
+  </body>
+</html>

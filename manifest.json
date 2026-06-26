@@ -1,31 +1,53 @@
 {
-    "manifest_version": 2,
-    "name": "CDIEXT",
-    "version": "1.1",
-    "description": "A pop-up dictionary extension for Chinese with Reader Function",
-    "icons": {
-        "128": "assets/img/icon.png"
-    },
-    "browser_action": {
-        "default_icon": "assets/img/icon.png"
-    },
-    "permissions": ["activeTab", "storage", "scripting", "tabs", "contextMenus", "menus", "clipboardRead", "<all_urls>"],
-    "background": {
-        "scripts": ["background.js"],
-        "persistent": false
-    },
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["assets/js/content.js"]
-        },
-        {
-            "matches": ["<all_urls>"],
-            "js": ["options/configure.js"]
-        }
-    ],
-    "options_ui": {
-        "page": "options.html",
-        "open_in_tab": true
+  "manifest_version": 3,
+  "name": "CDIEXT",
+  "version": "1.2",
+  "description": "A pop-up dictionary extension for Chinese with Reader Function",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "cdiext@aligator527",
+      "strict_min_version": "115.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
+  },
+  "icons": {
+    "128": "assets/img/icon.png"
+  },
+  "action": {
+    "default_icon": "assets/img/icon.png",
+    "default_title": "Toggle CDIEXT"
+  },
+  "permissions": ["activeTab", "storage", "scripting", "tabs", "contextMenus", "clipboardRead"],
+  "host_permissions": ["<all_urls>", "http://127.0.0.1:8765/*"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "commands": {
+    "toggle-sticky": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Toggle sticky popup mode"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["data/*.json", "assets/img/*.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

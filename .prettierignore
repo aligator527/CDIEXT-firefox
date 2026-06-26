@@ -1,5 +1,4 @@
-*.zip
-node_modules/
 dist/
+node_modules/
 web-ext-artifacts/
-*.u8
+data/
